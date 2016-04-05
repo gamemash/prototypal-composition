@@ -8,6 +8,10 @@ var physicsEngine = engine.create();
 
 const CssRender = stampit()
   .init(function(){
+    gameCanvasElement = document.getElementById(this.gameCanvasId);
+    console.log(gameCanvasElement.style)
+    width = gameCanvasElement.offsetWidth;
+    height = gameCanvasElement.offsetHeight;
     entities = []
   })
   .methods({
@@ -18,8 +22,8 @@ const CssRender = stampit()
       for(var i = 0; i < entities.length; i++){
         entity = entities[i];
         domElement = document.getElementById(entity.name);
-        domElement.style.top = entity.position.x + "px";
-        domElement.style.left = entity.position.y + "px";
+        domElement.style.left = (entity.position.x + width / 2)+ "px";
+        domElement.style.top = (entity.position.y + height / 2 )+ "px";
       }
     }
   });
@@ -29,15 +33,17 @@ const cssDrawable = stampit()
     this.renderEngine.addEntity(this)
 })
 
-cssRender = CssRender.create();
+cssRender = CssRender.create({
+  gameCanvasId: "game-canvas"
+});
 
-const character = require("./src/character.js").refs({engine: physicsEngine})//.compose(logsPosition);
+const character = require("./src/character.js").refs({engine: physicsEngine, renderEngine: cssRender}).compose(cssDrawable);
 const robot = require("./src/robot.js").refs({engine: physicsEngine, renderEngine: cssRender}).compose(cssDrawable);
 
 var ronald = character.create({name: "Ronald"});
 var murderDog = robot.create({name: "MurderDog"});
 
-ronald.changeDirection([-1, 0]);
+ronald.changeDirection([0, 0]);
 
 function renderLoop(){
   physicsEngine.update();
