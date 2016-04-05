@@ -1,14 +1,21 @@
+body {
+  background-color: #efefff;
+}
+
 h1 {
   font-family: sans-serif;
   text-align: center;
+  color: #445;
 }
+
 #game-canvas {
-  height: 400px;
-  width: 500px;
+  height: 500px;
+  width: 80%;
   border: 1px solid #ccc;
-  background-color: #eee;
+  background-color: #f8f8ff;
   position: relative;
   margin: auto;
+  border-radius: 5px;
 }
 
 #x-axis {
