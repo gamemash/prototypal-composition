@@ -1,0 +1,23 @@
+{
+  "name": "composition",
+  "version": "1.0.0",
+  "description": "composition test ================",
+  "main": "composition.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gamemash/prototypal-composition.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gamemash/prototypal-composition/issues"
+  },
+  "homepage": "https://github.com/gamemash/prototypal-composition#readme",
+  "dependencies": {
+    "stampit": "^2.1.1",
+    "three": "^0.75.0"
+  }
+}
