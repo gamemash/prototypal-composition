@@ -39,4 +39,6 @@ h1 {
 
 .entity {
   position: absolute;
+  border-top: 1px solid #f00;
+  border-left: 1px solid #f00;
 }

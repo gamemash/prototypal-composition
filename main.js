@@ -22,8 +22,8 @@ const CssRender = stampit()
       for(var i = 0; i < entities.length; i++){
         entity = entities[i];
         domElement = document.getElementById(entity.name);
-        domElement.style.left = (entity.position.x + width / 2)+ "px";
-        domElement.style.top = (entity.position.y + height / 2 )+ "px";
+        domElement.style.left = ((entity.position.x * this.zoom) + width / 2) + "px";
+        domElement.style.top = ((entity.position.y * this.zoom) + height / 2 )+ "px";
       }
     }
   });
@@ -34,7 +34,8 @@ const cssDrawable = stampit()
 })
 
 cssRender = CssRender.create({
-  gameCanvasId: "game-canvas"
+  gameCanvasId: "game-canvas",
+  zoom: 30
 });
 
 const character = require("./src/character.js").refs({engine: physicsEngine, renderEngine: cssRender}).compose(cssDrawable);
