@@ -10,7 +10,6 @@ const circleInput = stampit()
     var angularVelocity = 0.1 * Math.PI;
     this.position = new THREE.Vector2(0, -6.5);
     update = function(dt){
-      console.log(this.position);
       angle += angularVelocity * dt;
       this.direction = new THREE.Vector2(Math.cos(angle), Math.sin(angle));
     };
