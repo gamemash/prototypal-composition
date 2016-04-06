@@ -42,7 +42,11 @@ const character = require("./src/character.js").refs({engine: physicsEngine, ren
 const robot = require("./src/robot.js").refs({engine: physicsEngine, renderEngine: cssRender}).compose(cssDrawable);
 
 var ronald = character.create({name: "Ronald"});
-var murderDog = robot.create({name: "MurderDog"});
+ronald.addRegister(87, ronald.changeDirection.bind(ronald, [0, -1]));
+ronald.addRegister(83, ronald.changeDirection.bind(ronald, [0, 1]));
+ronald.addRegister(65, ronald.changeDirection.bind(ronald, [-1, 0]));
+ronald.addRegister(68, ronald.changeDirection.bind(ronald, [ 1, 0]));
+var murderDog = robot.create({name: "MurderDog", moving: true});
 
 ronald.changeDirection([0, 0]);
 

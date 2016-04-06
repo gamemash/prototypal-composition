@@ -1,16 +1,30 @@
-var KeyboardInput = {
-  registers: {},
-  addRegister: function(keyCode, callback){
+var KeyboardInput = function(){
+  this.registers = {};
+  this.keys = [];
+
+  this.addRegister = function(keyCode, callback){
     this.registers[keyCode] = callback;
-  },
-  handleKeyDown: function(e){
+  }
+  this.handleKeyDown = function(e){
+    this.keys[e.keyCode] = true;
+
     for (keyCode in this.registers){
       if (keyCode == e.keyCode){
-        this.registers[keyCode]();
-        break;
+        this.registers[keyCode](e);
+        return;
       }
     }
+    console.log("unhandled event", e.keyCode);
+  }
+
+  this.handleKeyUp = function(e){
+    this.keys[e.keyCode] = false;
+  }
+
+  if (document){
+    document.addEventListener('keydown', this.handleKeyDown.bind(this) );
+    document.addEventListener('keyup', this.handleKeyUp.bind(this) );
   }
 };
 
-module.exports = KeyboardInput;
+module.exports = new KeyboardInput();

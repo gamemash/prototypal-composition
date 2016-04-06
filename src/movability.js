@@ -4,11 +4,13 @@ var THREE = require('three');
 const movability = stampit()
   .refs({
     name: "Movability default",
-    speed: 2
+    speed: 2,
+    moving: false
   })
   .init(function(){
     update = function(dt){
-      this.position.addScaledVector(this.direction, this.speed * dt);
+      if (this.moving)
+        this.position.addScaledVector(this.direction, this.speed * dt);
     };
 
     this.direction = new THREE.Vector2(0, 1);
